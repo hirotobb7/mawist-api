@@ -1,0 +1,10 @@
+AWSTemplateFormatVersion: '2010-09-09'
+
+Resources:
+  WishListsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      Fn::Transform:
+        Name: AWS::Include
+        Parameters:
+          Location: ./wish_lists/table-definition.yml
