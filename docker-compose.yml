@@ -2,19 +2,26 @@ version: "3.9"
 
 services:
   dynamodb:
-    image: amazon/dynamodb-local:latest
+    build:
+      context: ./docker/dynamodb
+      dockerfile: Dockerfile
     container_name: dynamodb
     ports:
       - "8000:8000"
     volumes:
-      - "./local-data/dynamodb/shared-local-instance.db:/dynamodblocal/shared-local-instance.db"
-    command: -jar DynamoDBLocal.jar -sharedDb -optimizeDbBeforeStartup -dbPath .
+      - ./local-data/dynamodb:/home/dynamodblocal/data
+    command: -jar DynamoDBLocal.jar -sharedDb -optimizeDbBeforeStartup -dbPath ./data
+
 
   go-sam:
-    build: .
+    build:
+      context: ./docker/go-sam
+      dockerfile: Dockerfile
     container_name: go-sam
     depends_on:
       - dynamodb
+    env_file:
+      - ./.env
     ports:
       - "3000:3000"
     volumes:
