@@ -5,7 +5,7 @@ import (
 
 	"github.com/aws/aws-lambda-go/events"
 
-	"github.com/hiroto7/mawist/pkg/json"
+	"github.com/hirotobb7/mawist/pkg/json"
 )
 
 func InternalServerError() events.APIGatewayProxyResponse {

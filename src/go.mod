@@ -1,4 +1,4 @@
-module github.com/hiroto7/mawist
+module github.com/hirotobb7/mawist
 
 go 1.16
 

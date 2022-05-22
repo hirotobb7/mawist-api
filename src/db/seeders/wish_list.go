@@ -1,7 +1,7 @@
 package seeders
 
 import (
-	"github.com/hiroto7/mawist/internal/dynamo"
+	"github.com/hirotobb7/mawist/internal/dynamo"
 )
 
 var wishLists = [3]dynamo.WishList{

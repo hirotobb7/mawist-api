@@ -1,3 +1,5 @@
+// TODO: 認証
+
 package main
 
 import (
@@ -6,11 +8,11 @@ import (
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 
-	"github.com/hiroto7/mawist/internal/dynamo"
-	"github.com/hiroto7/mawist/pkg/json"
-	"github.com/hiroto7/mawist/pkg/log"
-	"github.com/hiroto7/mawist/pkg/response"
-	"github.com/hiroto7/mawist/pkg/validator"
+	"github.com/hirotobb7/mawist/internal/dynamo"
+	"github.com/hirotobb7/mawist/pkg/json"
+	"github.com/hirotobb7/mawist/pkg/log"
+	"github.com/hirotobb7/mawist/pkg/response"
+	"github.com/hirotobb7/mawist/pkg/validator"
 )
 
 var logger = log.GetLogger()

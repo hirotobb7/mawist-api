@@ -7,8 +7,8 @@ import (
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/google/go-cmp/cmp"
 
-	"github.com/hiroto7/mawist/db/seeders"
-	"github.com/hiroto7/mawist/pkg/json"
+	"github.com/hirotobb7/mawist/db/seeders"
+	"github.com/hirotobb7/mawist/pkg/json"
 )
 
 func TestMain(m *testing.M) {
