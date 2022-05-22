@@ -1,10 +1,11 @@
 # mawist-api
-Serverless API
+ほしい物リスト管理API
 
 ## 使用技術
 - Docker
 - AWS SAM
 - AWS CloudFormation
+- AWS DynamoDB
 - Golang
 
 ## 開発ブランチ名
