@@ -11,6 +11,6 @@ import (
 var db = dynamo.New(
 	session.Must(session.NewSession()),
 	&aws.Config{
-		Region:   aws.String(os.Getenv("AWS_DEFAULT_REGION")),
+		Region:   aws.String(os.Getenv("AWS_REGION")),
 		Endpoint: aws.String(os.Getenv("DB_ENDPOINT")),
 	})

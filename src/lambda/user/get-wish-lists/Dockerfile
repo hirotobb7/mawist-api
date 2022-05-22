@@ -9,6 +9,7 @@ COPY ./lambda/user/get-wish-lists/main.go ./lambda/user/get-wish-lists/
 
 COPY ./internal/dynamo ./internal/dynamo
 COPY ./pkg/json ./pkg/json
+COPY ./pkg/log ./pkg/log
 COPY ./pkg/response ./pkg/response
 COPY ./pkg/validator ./pkg/validator
 

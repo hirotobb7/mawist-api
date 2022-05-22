@@ -1,7 +1,8 @@
 .DS_Store
 .idea
 
-.env
+.docker.env
+.sam.env.json
 .log
 
 .aws-sam

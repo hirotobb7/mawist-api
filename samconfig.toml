@@ -1,0 +1,4 @@
+version=0.1
+
+[default.build.parameters]
+container_env_var_file = ".sam.env.json"

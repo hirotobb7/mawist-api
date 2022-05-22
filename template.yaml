@@ -1,0 +1,56 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: mawist-api
+
+Globals:
+  Function:
+    Timeout: 5
+
+Parameters:
+  DB_ENDPOINT:
+    Type: String
+
+
+# NOTICE: ローカル環境のみ検証済
+# TODO: 環境名をPrefixに追加
+Resources:
+  MawistApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: mawist
+      StageName: Dev # TODO: 本番と切り替え可能にする
+
+  GetWishListsForUser:
+    Type: AWS::Serverless::Function
+    # TODO: Policiesの追加
+    Properties:
+      FunctionName: get-wish-lists-for-user
+      PackageType: Image
+      Architectures:
+        - x86_64
+      Events:
+        ApiGateway:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MawistApi
+            Path: /wish-lists
+            Method: POST
+      Environment:
+        Variables:
+          AWS_REGION: !Ref AWS::Region
+          DB_ENDPOINT: !Ref DB_ENDPOINT
+    Metadata:
+      DockerTag: go1.x-v1
+      DockerContext: ./src
+      Dockerfile: ./lambda/user/get-wish-lists/Dockerfile
+
+Outputs:
+  GetWishListsForUser-API:
+    Description:
+    Value: !Sub
+  GetWishListsForUser-Function:
+    Description:
+    Value: !GetAtt GetWishListsForUser.Arn
+  GetWishListsForUser-FunctionIamRole:
+    Description:
+    Value: !GetAtt GetWishListsForUser.Arn
