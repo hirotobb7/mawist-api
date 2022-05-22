@@ -22,18 +22,17 @@ type RequestBody struct {
 }
 
 func handleRequest(request events.APIGatewayProxyRequest) (int, interface{}, error) {
-
-	var reqBody RequestBody
-	if err := json.Parse(request.Body, &reqBody); err != nil {
+	var requestBody RequestBody
+	if err := json.Parse(request.Body, &requestBody); err != nil {
 		return http.StatusInternalServerError, nil, err
 	}
 
-	validationMessages := validator.Validate(&reqBody).GetMessages()
+	validationMessages := validator.Validate(&requestBody).GetMessages()
 	if len(validationMessages) != 0 {
 		return http.StatusBadRequest, validationMessages, nil
 	}
 
-	wishLists, err := dynamo.FindWishListsByUserId(reqBody.UserId)
+	wishLists, err := dynamo.FindWishListsByUserId(requestBody.UserId)
 	if err != nil {
 		return http.StatusInternalServerError, nil, err
 	}
@@ -49,17 +48,16 @@ func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 		logger.Error.Printf("%+v\n", err)
 	}
 
-	// rename
-	res, err := response.New(statusCode, result)
-
 	logger.Info.Printf("%+d", statusCode)
 	logger.Info.Printf("%+v\n", result)
+
+	apiGatewayProxyResponse, err := response.New(statusCode, result)
 
 	if err != nil {
 		logger.Error.Printf("%+v\n", err)
 	}
 
-	return res, nil
+	return apiGatewayProxyResponse, nil
 }
 
 func main() {
