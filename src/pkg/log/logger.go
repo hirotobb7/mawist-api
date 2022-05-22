@@ -16,7 +16,6 @@ var singletonLogger *logger
 
 func GetLogger() *logger {
 	if singletonLogger == nil {
-		log.Print("create")
 		singletonLogger = &logger{
 			Info: log.New(
 				os.Stdout,
