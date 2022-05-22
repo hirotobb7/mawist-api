@@ -1,5 +1,6 @@
 version: "3.9"
 
+# for local
 services:
   dynamodb:
     build:
@@ -11,7 +12,6 @@ services:
     volumes:
       - ./local-data/dynamodb:/home/dynamodblocal/data
     command: -jar DynamoDBLocal.jar -sharedDb -optimizeDbBeforeStartup -dbPath ./data
-
 
   go-sam:
     build:
@@ -27,5 +27,6 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock # DooD for sam
       - ./:/var/sam
+      - ./.go:/root/go # for IDE
     working_dir: /var/sam
     tty: true
