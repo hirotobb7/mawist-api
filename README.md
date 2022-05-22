@@ -8,6 +8,22 @@
 - AWS DynamoDB
 - Golang
 
+## ディレクト構成
+```
+.
+├── aws // AWSテンプレートを格納
+├── docker // 開発環境Dockerfileを格納
+├── local-data // ローカルDBデータを格納
+├── scripts // shell scriptsを格納
+└── src // Golangソースを格納
+     ├── db // seederを格納
+     ├── internal // プロジェクト固有の処理の自作モジュールを格納 
+     ├── lambda // lambdaを格納
+     │     └── user // userに使用される関数を格納
+     └── pkg // プロジェクト外でも利用されうる自作モジュールを格納
+
+```
+
 ## 開発ブランチ名
 GitHubで作成したissueの番号を用いる。
 `feature/${issue-number}`とする。
