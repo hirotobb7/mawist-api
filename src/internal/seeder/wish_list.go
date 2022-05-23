@@ -1,4 +1,4 @@
-package seeders
+package seeder
 
 import (
 	"github.com/hirotobb7/mawist/internal/db/repository/dynamo"

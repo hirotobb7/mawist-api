@@ -16,8 +16,12 @@
 ├── local-data // ローカルDBデータを格納
 ├── scripts // shell scriptsを格納
 └── src // Golangソースを格納
-     ├── db // seederを格納
      ├── internal // プロジェクト固有の処理の自作モジュールを格納 
+     │     ├── db // 
+     │     │    ├── repository // DBとのインターフェースを格納
+     │     │    └── service // 外部から利用されるCRUD定義を格納
+     │     ├── model // データのstruct定義を格納
+     │     └── seeder // 
      ├── lambda // lambdaを格納
      │     └── user // userに使用される関数を格納
      └── pkg // プロジェクト外でも利用されうる自作モジュールを格納
