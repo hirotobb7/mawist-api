@@ -1,10 +1,15 @@
 package seeders
 
 import (
-	"github.com/hirotobb7/mawist/internal/dynamo"
+	"github.com/hirotobb7/mawist/internal/db/repository/dynamo"
+	"github.com/hirotobb7/mawist/internal/db/service"
+	"github.com/hirotobb7/mawist/internal/model"
 )
 
-var wishLists = [3]dynamo.WishList{
+var db = dynamo.GetDb()
+var wishListService = service.NewWishListService(dynamo.NewWishListRepository(db))
+
+var wishLists = [3]model.WishList{
 	{
 		UserId:     "test-user-id-1",
 		Id:         "test-id-1",
@@ -33,7 +38,7 @@ var wishLists = [3]dynamo.WishList{
 
 func CreateWishLists() error {
 	for _, wishList := range wishLists {
-		if err := wishList.Create(); err != nil {
+		if err := wishListService.Create(wishList); err != nil {
 			return err
 		}
 	}
@@ -43,7 +48,7 @@ func CreateWishLists() error {
 
 func DeleteWishLists() error {
 	for _, wishList := range wishLists {
-		if err := wishList.Delete(); err != nil {
+		if err := wishListService.Delete(wishList); err != nil {
 			return err
 		}
 	}

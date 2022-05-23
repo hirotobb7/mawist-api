@@ -8,18 +8,21 @@ import (
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 
-	"github.com/hirotobb7/mawist/internal/dynamo"
+	"github.com/hirotobb7/mawist/internal/db/repository/dynamo"
+	"github.com/hirotobb7/mawist/internal/db/service"
 	"github.com/hirotobb7/mawist/pkg/json"
 	"github.com/hirotobb7/mawist/pkg/log"
 	"github.com/hirotobb7/mawist/pkg/response"
 	"github.com/hirotobb7/mawist/pkg/validator"
 )
 
-var logger = log.GetLogger()
-
 type RequestBody struct {
 	UserId string `json:"userId" validate:"required"`
 }
+
+var logger = log.GetLogger()
+var db = dynamo.GetDb()
+var wishListService = service.NewWishListService(dynamo.NewWishListRepository(db))
 
 func handleRequest(request events.APIGatewayProxyRequest) (int, interface{}, error) {
 	var requestBody RequestBody
@@ -32,7 +35,7 @@ func handleRequest(request events.APIGatewayProxyRequest) (int, interface{}, err
 		return http.StatusBadRequest, validationMessages, nil
 	}
 
-	wishLists, err := dynamo.FindWishListsByUserId(requestBody.UserId)
+	wishLists, err := wishListService.FindByUserId(requestBody.UserId)
 	if err != nil {
 		return http.StatusInternalServerError, nil, err
 	}
@@ -48,7 +51,7 @@ func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 		logger.Error.Printf("%+v\n", err)
 	}
 
-	logger.Info.Printf("%+d", statusCode)
+	logger.Info.Printf("%d", statusCode)
 	logger.Info.Printf("%+v\n", result)
 
 	apiGatewayProxyResponse, err := response.New(statusCode, result)
