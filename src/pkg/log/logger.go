@@ -20,12 +20,12 @@ func GetLogger() *logger {
 			Info: log.New(
 				os.Stdout,
 				"[INFO]",
-				log.Llongfile, //　時刻, リクエストとの関連はLambdaに委譲
+				log.Llongfile, // 時刻, リクエストとの関連はLambdaに委譲
 			),
 			Error: log.New(
 				os.Stderr,
 				"[ERROR]",
-				log.Llongfile, //　時刻, リクエストとの関連はLambdaに委譲
+				log.Llongfile, // 時刻, リクエストとの関連はLambdaに委譲
 			),
 		}
 	}
