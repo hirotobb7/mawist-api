@@ -20,10 +20,10 @@ func (wishListService WishListService) FindByUserId(userId string) ([]models.Wis
 	return wishListService.repository.FindByUserId(userId)
 }
 
-func (wishListService WishListService) Create(wishList models.WishList) error {
+func (wishListService WishListService) Create(wishList *models.WishList) error {
 	return wishListService.repository.Create(wishList)
 }
 
-func (wishListService WishListService) Delete(wishList models.WishList) error {
+func (wishListService WishListService) Delete(wishList *models.WishList) error {
 	return wishListService.repository.Delete(wishList)
 }

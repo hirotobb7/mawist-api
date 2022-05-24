@@ -1,13 +1,13 @@
 package main
 
 import (
-	"github.com/hirotobb7/mawist/internal/seeds"
 	"log"
 	"testing"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/google/go-cmp/cmp"
 
+	"github.com/hirotobb7/mawist/internal/seeds"
 	"github.com/hirotobb7/mawist/pkg/json"
 )
 

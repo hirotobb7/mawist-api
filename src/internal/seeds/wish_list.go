@@ -38,7 +38,7 @@ var wishLists = [3]models.WishList{
 
 func CreateWishLists() error {
 	for _, wishList := range wishLists {
-		if err := wishListService.Create(wishList); err != nil {
+		if err := wishListService.Create(&wishList); err != nil {
 			return err
 		}
 	}
@@ -48,7 +48,7 @@ func CreateWishLists() error {
 
 func DeleteWishLists() error {
 	for _, wishList := range wishLists {
-		if err := wishListService.Delete(wishList); err != nil {
+		if err := wishListService.Delete(&wishList); err != nil {
 			return err
 		}
 	}
