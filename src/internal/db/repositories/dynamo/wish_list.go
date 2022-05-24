@@ -18,8 +18,7 @@ func NewWishListRepository(db *dynamo.DB) repositories.WishListRepository {
 }
 
 func (wR *wishListRepository) FindByUserId(userId string) ([]models.WishList, error) {
-
-	var wishLists []models.WishList
+	wishLists := make([]models.WishList, 0)
 	if err := wR.table.Get("user_id", userId).All(&wishLists); err != nil {
 		return wishLists, errors.WithStack(err)
 	}

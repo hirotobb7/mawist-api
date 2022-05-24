@@ -1,19 +1,19 @@
 package main
 
 import (
+	"github.com/hirotobb7/mawist/internal/seeds"
 	"log"
 	"testing"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/google/go-cmp/cmp"
 
-	"github.com/hirotobb7/mawist/db/seeders"
 	"github.com/hirotobb7/mawist/pkg/json"
 )
 
 func TestMain(m *testing.M) {
-	if err := seeders.CreateWishLists(); err != nil {
-		if err := seeders.DeleteWishLists(); err != nil {
+	if err := seeds.CreateWishLists(); err != nil {
+		if err := seeds.DeleteWishLists(); err != nil {
 			log.Printf("seed rollback error %+v\n", err)
 		}
 		log.Fatalf("seed create error %+v\n", err)
@@ -24,7 +24,7 @@ func TestMain(m *testing.M) {
 
 func TestHandler(t *testing.T) {
 	t.Cleanup(func() {
-		if err := seeders.DeleteWishLists(); err != nil {
+		if err := seeds.DeleteWishLists(); err != nil {
 			t.Errorf("seed clean up error %+v\n", err)
 
 		}
@@ -60,7 +60,7 @@ func TestHandler(t *testing.T) {
 	})
 
 	t.Run("200 Fill Response", func(t *testing.T) {
-		type ExpectBody [2]map[string]interface{}
+		type ExpectBody []map[string]interface{}
 
 		expectBody := ExpectBody{
 			{
@@ -102,13 +102,17 @@ func TestHandler(t *testing.T) {
 	})
 
 	t.Run("200 Empty Response", func(t *testing.T) {
+		type ExpectBody []map[string]interface{}
+
+		expectBody := make(ExpectBody, 0)
+
 		request.Body, _ = json.Stringify(map[string]string{
 			"userId": "not-existed-id",
 		})
 
 		result, _ := handler(request)
 
-		var resultBody interface{}
+		var resultBody ExpectBody
 		if err := json.Parse(result.Body, &resultBody); err != nil {
 			t.Fatalf("unexpected error: %+v\n", err)
 		}
@@ -117,7 +121,7 @@ func TestHandler(t *testing.T) {
 			t.Errorf("(-expect +result):\n%s", diff)
 		}
 
-		if diff := cmp.Diff(resultBody, nil); diff != "" {
+		if diff := cmp.Diff(resultBody, expectBody); diff != "" {
 			t.Errorf("(-expect +result):\n%s", diff)
 		}
 	})
