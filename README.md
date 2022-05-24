@@ -17,11 +17,11 @@
 ├── scripts // shell scriptsを格納
 └── src // Golangソースを格納
      ├── internal // プロジェクト固有の処理の自作モジュールを格納 
-     │     ├── db // 
+     │     ├── db // db関連を格納
      │     │    ├── dtos // Data Transfer Objectを格納
-     │     │    ├── repositories // DBとのインターフェースを格納
+     │     │    ├── repositories // インターフェースを格納
      │     │    └── services // 外部から利用されるCRUD定義を格納
-     │     ├── models // データのstruct定義を格納
+     │     ├── models // ビジネスロジックを格納
      │     └── seeds // テストで使用するシードを格納
      ├── lambda // lambdaを格納
      │     └── user // userに使用される関数を格納
