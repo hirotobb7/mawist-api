@@ -18,10 +18,10 @@
 └── src // Golangソースを格納
      ├── internal // プロジェクト固有の処理の自作モジュールを格納 
      │     ├── db // 
-     │     │    ├── repository // DBとのインターフェースを格納
-     │     │    └── service // 外部から利用されるCRUD定義を格納
-     │     ├── model // データのstruct定義を格納
-     │     └── seeder // テストで使用するシードを格納
+     │     │    ├── repositories // DBとのインターフェースを格納
+     │     │    └── services // 外部から利用されるCRUD定義を格納
+     │     ├── models // データのstruct定義を格納
+     │     └── seeds // テストで使用するシードを格納
      ├── lambda // lambdaを格納
      │     └── user // userに使用される関数を格納
      └── pkg // プロジェクト外でも利用されうる自作モジュールを格納

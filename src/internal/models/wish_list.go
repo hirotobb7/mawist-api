@@ -1,4 +1,4 @@
-package model
+package models
 
 type WishList struct {
 	UserId     string `dynamo:"user_id" json:"userId"` // PK

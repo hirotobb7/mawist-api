@@ -1,15 +1,15 @@
-package seeder
+package seeds
 
 import (
-	"github.com/hirotobb7/mawist/internal/db/repository/dynamo"
-	"github.com/hirotobb7/mawist/internal/db/service"
-	"github.com/hirotobb7/mawist/internal/model"
+	"github.com/hirotobb7/mawist/internal/db/repositories/dynamo"
+	"github.com/hirotobb7/mawist/internal/db/services"
+	"github.com/hirotobb7/mawist/internal/models"
 )
 
 var db = dynamo.GetDb()
-var wishListService = service.NewWishListService(dynamo.NewWishListRepository(db))
+var wishListService = services.NewWishListService(dynamo.NewWishListRepository(db))
 
-var wishLists = [3]model.WishList{
+var wishLists = [3]models.WishList{
 	{
 		UserId:     "test-user-id-1",
 		Id:         "test-id-1",

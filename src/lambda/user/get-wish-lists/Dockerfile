@@ -7,11 +7,8 @@ COPY ./go.sum ./
 
 COPY ./lambda/user/get-wish-lists/main.go ./lambda/user/get-wish-lists/
 
-COPY ./internal/dynamo ./internal/dynamo
-COPY ./pkg/json ./pkg/json
-COPY ./pkg/log ./pkg/log
-COPY ./pkg/response ./pkg/response
-COPY ./pkg/validator ./pkg/validator
+COPY ./internal ./internal
+COPY ./pkg ./pkg
 
 WORKDIR /go/src/lambda/user/get-wish-lists
 

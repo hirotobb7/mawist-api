@@ -8,8 +8,8 @@ import (
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 
-	"github.com/hirotobb7/mawist/internal/db/repository/dynamo"
-	"github.com/hirotobb7/mawist/internal/db/service"
+	"github.com/hirotobb7/mawist/internal/db/repositories/dynamo"
+	"github.com/hirotobb7/mawist/internal/db/services"
 	"github.com/hirotobb7/mawist/pkg/json"
 	"github.com/hirotobb7/mawist/pkg/log"
 	"github.com/hirotobb7/mawist/pkg/response"
@@ -22,7 +22,7 @@ type RequestBody struct {
 
 var logger = log.GetLogger()
 var db = dynamo.GetDb()
-var wishListService = service.NewWishListService(dynamo.NewWishListRepository(db))
+var wishListService = services.NewWishListService(dynamo.NewWishListRepository(db))
 
 func handleRequest(request events.APIGatewayProxyRequest) (int, interface{}, error) {
 	var requestBody RequestBody
