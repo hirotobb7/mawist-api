@@ -18,6 +18,7 @@
 └── src // Golangソースを格納
      ├── internal // プロジェクト固有の処理の自作モジュールを格納 
      │     ├── db // 
+     │     │    ├── dtos // Data Transfer Objectを格納
      │     │    ├── repositories // DBとのインターフェースを格納
      │     │    └── services // 外部から利用されるCRUD定義を格納
      │     ├── models // データのstruct定義を格納
