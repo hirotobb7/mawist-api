@@ -8,7 +8,7 @@
 - AWS DynamoDB
 - Golang
 
-## ディレクト構成
+## ディレクトリ構成
 ```
 .
 ├── aws // AWSテンプレートを格納
@@ -21,7 +21,7 @@
      │     │    ├── repository // DBとのインターフェースを格納
      │     │    └── service // 外部から利用されるCRUD定義を格納
      │     ├── model // データのstruct定義を格納
-     │     └── seeder // 
+     │     └── seeder // テストで使用するシードを格納
      ├── lambda // lambdaを格納
      │     └── user // userに使用される関数を格納
      └── pkg // プロジェクト外でも利用されうる自作モジュールを格納
